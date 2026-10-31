@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>NOCTIS — The Only Light in the World</title>
+  <meta name="description" content="NOCTIS. Premium electric vehicles designed for total darkness. Quiet, expensive, precise.">
+  <meta name="theme-color" content="#07080A">
+
+  <!-- Google Fonts: Archivo (expanded with wdth axis), Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,300..700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Audio Indicator / HUD Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#heroTrack" class="brand-wordmark" aria-label="NOCTIS Home">
+        <span class="brand-text">NOCTIS</span>
+        <span class="brand-datum">EV·01</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary Navigation">
+        <a href="#manifesto" class="nav-link"><span>01</span>Manifesto</a>
+        <a href="#heroTrack" class="nav-link"><span>02</span>Hero</a>
+        <a href="#dismantleTrack" class="nav-link"><span>03</span>Architecture</a>
+        <a href="#specs" class="nav-link"><span>04</span>Specs</a>
+        <a href="#lineup" class="nav-link"><span>05</span>Lineup</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="audio-btn" id="audioToggle" aria-label="Toggle atmospheric sound">
+          <span class="audio-wave">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </span>
+          <span class="audio-label" id="audioLabel">AUDIO [OFF]</span>
+        </button>
+
+        <a href="#reserve" class="reserve-btn">
+          <span class="btn-text">RESERVE</span>
+          <span class="btn-glow"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Global HUD Status Overlay -->
+  <aside class="hud-status-bar" aria-hidden="true">
+    <div class="hud-item hud-coords">
+      <span class="hud-tag">LOC:</span>
+      <span class="hud-val">50°56'N 06°57'E // BLACKOUT PROTOCOL</span>
+    </div>
+    <div class="hud-item hud-time">
+      <span class="hud-tag">GRID:</span>
+      <span class="hud-val" id="hudClock">00:00:00 UTC</span>
+    </div>
+    <div class="hud-item hud-status">
+      <span class="status-dot"></span>
+      <span class="hud-val" id="hudBufferStatus">BUFFERING STREAM</span>
+    </div>
+  </aside>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 1: HERO SCROLLYTELLING TRACK (596 FRAMES)         -->
+  <!-- ========================================================= -->
+  <section class="scroll-track" id="heroTrack" data-sequence="hero" aria-label="Hero Scrollytelling Sequence">
+    <div class="sticky-viewport">
+      <canvas id="heroCanvas" class="sequence-canvas" width="1600" height="900"></canvas>
+      
+      <!-- Subtle vignette and gradient atmospheric overlays -->
+      <div class="canvas-vignette"></div>
+      <div class="light-ray-effect" id="heroLightRay"></div>
+
+      <!-- Scrollytelling Stage 1: Intro -->
+      <div class="story-overlay" id="heroBeat1">
+        <div class="story-card card-center">
+          <div class="hud-stamp">SYSTEM INITIATION // PHASE 01</div>
+          <h1 class="display-title">THE ONLY LIGHT<br>IN THE WORLD</h1>
+          <p class="body-lead">When the grid falls silent, the void belongs to NOCTIS. Quiet. Expensive. Precise.</p>
+          <div class="scroll-indicator">
+            <span class="scroll-mouse"><span class="wheel"></span></span>
+            <span class="scroll-text">SCROLL TO COMMENCE RECONNAISSANCE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrollytelling Stage 2: Power -->
+      <div class="story-overlay" id="heroBeat2">
+        <div class="story-card card-left">
+          <div class="hud-stamp">PROPULSION TELEMETRY</div>
+          <h2 class="display-title-sm">1,200 HP<br>DUAL MONOLITH</h2>
+          <p class="body-lead">Zero acoustic resonance. Unbroken presence. Acceleration born of pure shadow.</p>
+          <div class="card-specs-row">
+            <div class="spec-unit">
+              <span class="spec-num" id="heroSpeedCounter">0</span>
+              <span class="spec-lbl">KM/H VELOCITY</span>
+            </div>
+            <div class="spec-unit">
+              <span class="spec-num">2.1s</span>
+              <span class="spec-lbl">0–100 KM/H</span>
+            </div>
+            <div class="spec-unit">
+              <span class="spec-num">1,450</span>
+              <span class="spec-lbl">NM TORQUE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrollytelling Stage 3: Night Vision & LiDAR -->
+      <div class="story-overlay" id="heroBeat3">
+        <div class="story-card card-right">
+          <div class="hud-stamp">PHOTONIC SCANNER // 800M RANGE</div>
+          <h2 class="display-title-sm">AUTONOMOUS<br>NIGHT VISION</h2>
+          <p class="body-lead">Solid-state LiDAR slicing through wet asphalt and fog. The street reveals itself before the eye perceives it.</p>
+          <div class="tech-badge-list">
+            <span class="tech-badge">905 NM INFRARED</span>
+            <span class="tech-badge">SUB-LUX CAMERA</span>
+            <span class="tech-badge">REALTIME KINEMATICS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scrollytelling Stage 4: Climax -->
+      <div class="story-overlay" id="heroBeat4">
+        <div class="story-card card-center">
+          <div class="hud-stamp">THE CITY RESTS // AWAKEN</div>
+          <h2 class="display-title">PERFECTION<br>IN SHADOW</h2>
+          <p class="body-lead">In a city without power, we are the only current.</p>
+          <a href="#manifesto" class="text-cta">EXPLORE THE MANIFESTO <span class="arrow">&darr;</span></a>
+        </div>
+      </div>
+
+      <!-- Bottom Frame Scrubbing Telemetry -->
+      <div class="canvas-telemetry">
+        <div class="telemetry-bar">
+          <div class="telemetry-fill" id="heroProgressBar"></div>
+        </div>
+        <div class="telemetry-meta">
+          <span class="meta-item" id="heroFrameHud">FRAME 0001 / 0596</span>
+          <span class="meta-item">SEQUENCE: HERO_CONTINUOUS</span>
+          <span class="meta-item" id="heroPercentHud">0.0% PROG</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 2: PHILOSOPHY & MANIFESTO                         -->
+  <!-- ========================================================= -->
+  <section class="content-section manifesto-section" id="manifesto">
+    <div class="container">
+      <div class="section-meta">
+        <span class="hud-badge">PHILOSOPHY</span>
+        <span class="hud-id">NOCTIS-MAN-01</span>
+      </div>
+
+      <div class="manifesto-grid">
+        <div class="manifesto-lead">
+          <h2 class="display-quote">
+            IN TOTAL DARKNESS,<br>PERFECTION CANNOT HIDE.
+          </h2>
+        </div>
+
+        <div class="manifesto-body">
+          <p class="body-lead">
+            Noise is the currency of the past. When an entire metropolis ceases to illuminate, true mechanical mastery emits no superfluous vibration.
+          </p>
+          <p class="body-secondary">
+            NOCTIS was engineered for the pitch-black void. Every aerodynamic crease directs laminar flow without visual noise. Every photon cast from our xenon light bars is calibrated to penetrate impenetrable nocturnal fog.
+          </p>
+          <div class="signature-block">
+            <div class="signature-line"></div>
+            <div class="signature-title">CHIEF DESIGN STUDIO // COLOGNE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Metrics Row -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-index">01</span>
+            <span class="metric-tag">ACOUSTICS</span>
+          </div>
+          <div class="metric-value">0.00 <span class="metric-unit">dB</span></div>
+          <div class="metric-desc">Zero noise floor. Anti-phase acoustic counter-oscillators eliminate motor whine.</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-index">02</span>
+            <span class="metric-tag">AERODYNAMICS</span>
+          </div>
+          <div class="metric-value">0.19 <span class="metric-unit">Cd</span></div>
+          <div class="metric-desc">Unbroken surface continuity. Active underbody venturi channels create negative lift.</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-index">03</span>
+            <span class="metric-tag">SOLID-STATE RANGE</span>
+          </div>
+          <div class="metric-value">840 <span class="metric-unit">KM</span></div>
+          <div class="metric-desc">120 kWh cell-to-chassis structural battery. Operating at 900V SiC architecture.</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-index">04</span>
+            <span class="metric-tag">CRYOGENIC RECHARGE</span>
+          </div>
+          <div class="metric-value">11 <span class="metric-unit">MIN</span></div>
+          <div class="metric-desc">10% to 80% charge replenish via 400 kW continuous liquid-cooled architecture.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 3: ARCHITECTURE / DISMANTLE SCROLLYTELLING TRACK  -->
+  <!-- ========================================================= -->
+  <section class="scroll-track" id="dismantleTrack" data-sequence="dismantle" aria-label="Architecture Dismantle Sequence">
+    <div class="sticky-viewport">
+      <canvas id="dismantleCanvas" class="sequence-canvas" width="1600" height="900"></canvas>
+      
+      <div class="canvas-vignette"></div>
+
+      <!-- Stage 1: Assembled Monocoque -->
+      <div class="story-overlay" id="dismantleBeat1">
+        <div class="story-card card-left">
+          <div class="hud-stamp">ANATOMY // 01 ASSEMBLED</div>
+          <h2 class="display-title-sm">STRUCTURAL<br>MONOCOQUE</h2>
+          <p class="body-lead">Single-piece autoclave-cured carbon monocoque. Torsional rigidity exceeds 65,000 Nm per degree.</p>
+          <div class="hud-bullet-list">
+            <div class="hud-bullet"><span class="dot"></span> DRY CARBON CONTINUOUS WEAVE</div>
+            <div class="hud-bullet"><span class="dot"></span> INTEGRATED SAFETY CRASH CELLS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 2: Aerodynamics Disassembled -->
+      <div class="story-overlay" id="dismantleBeat2">
+        <div class="story-card card-right">
+          <div class="hud-stamp">ANATOMY // 02 MORPHING AERO</div>
+          <h2 class="display-title-sm">ACTIVE BODY<br>ARCHITECTURE</h2>
+          <p class="body-lead">Exterior body panels expand and vent at velocity. No visible seams or mechanical hinges disrupt the silhouette.</p>
+          <div class="hud-bullet-list">
+            <div class="hud-bullet"><span class="dot"></span> ADAPTIVE MICRO-ACTUATED SURFACES</div>
+            <div class="hud-bullet"><span class="dot"></span> VARIABLE DOWNFORCE DYNAMICS</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 3: Exploded Powertrain & Battery -->
+      <div class="story-overlay" id="dismantleBeat3">
+        <div class="story-card card-left">
+          <div class="hud-stamp">ANATOMY // 03 CELL-TO-CHASSIS</div>
+          <h2 class="display-title-sm">SOLID-STATE<br>SUBSTRUCTURE</h2>
+          <p class="body-lead">The 120 kWh battery pack forms the structural floorpan, lowering center of gravity to 360mm from the tarmac.</p>
+          <div class="hud-bullet-list">
+            <div class="hud-bullet"><span class="dot"></span> CERAMIC ELECTROLYTE SAFETY</div>
+            <div class="hud-bullet"><span class="dot"></span> 900V HIGH-EFFICIENCY INVERTER</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 4: Independent Axial Flux Motors -->
+      <div class="story-overlay" id="dismantleBeat4">
+        <div class="story-card card-right">
+          <div class="hud-stamp">ANATOMY // 04 AXIAL PROPULSION</div>
+          <h2 class="display-title-sm">AXIAL FLUX<br>DUAL MOTORS</h2>
+          <p class="body-lead">Twin permanent magnet axial flux units deliver 1,200 hp directly to the hubs with 1,000 Hz vectoring.</p>
+          <div class="hud-bullet-list">
+            <div class="hud-bullet"><span class="dot"></span> INDEPENDENT ALL-WHEEL DRIVE</div>
+            <div class="hud-bullet"><span class="dot"></span> REGENERATIVE RETARDATION 350 KW</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Telemetry Bar for Dismantle -->
+      <div class="canvas-telemetry">
+        <div class="telemetry-bar">
+          <div class="telemetry-fill fill-taillight" id="dismantleProgressBar"></div>
+        </div>
+        <div class="telemetry-meta">
+          <span class="meta-item" id="dismantleFrameHud">FRAME 0001 / 0198</span>
+          <span class="meta-item">SEQUENCE: STRUCTURAL_DISMANTLE</span>
+          <span class="meta-item" id="dismantlePercentHud">0.0% PROG</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 4: TECHNICAL SPECIFICATIONS MATRIX                -->
+  <!-- ========================================================= -->
+  <section class="content-section specs-section" id="specs">
+    <div class="container">
+      <div class="section-meta">
+        <span class="hud-badge">SPECIFICATION</span>
+        <span class="hud-id">MATRIX·900V</span>
+      </div>
+
+      <div class="section-header">
+        <h2 class="display-title-md">PRECISION<br>BENCHMARKS</h2>
+        <p class="section-lead">Every parameter calibrated without compromise. The technical breakdown of the NOCTIS platform.</p>
+      </div>
+
+      <div class="specs-table-wrapper">
+        <div class="specs-grid" id="specsGrid">
+          <!-- Dynamically injected from CONFIG.specs with fallback content -->
+          <div class="spec-row">
+            <div class="spec-cell-label"><span class="spec-code">SPEC_01</span>POWERTRAIN</div>
+            <div class="spec-cell-value">DUAL AXIAL FLUX PMSM</div>
+            <div class="spec-cell-detail">Independent front & rear torque vectoring at 1,000 Hz</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-cell-label"><span class="spec-code">SPEC_02</span>CHASSIS</div>
+            <div class="spec-cell-value">CARBON MONOCOQUE</div>
+            <div class="spec-cell-detail">65,000 Nm/deg torsional stiffness, seamless dry weave</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-cell-label"><span class="spec-code">SPEC_03</span>BATTERY ARCHITECTURE</div>
+            <div class="spec-cell-value">900V SOLID-STATE</div>
+            <div class="spec-cell-detail">120 kWh cell-to-chassis integrated monolithic pack</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-cell-label"><span class="spec-code">SPEC_04</span>CHARGE RECHARGE</div>
+            <div class="spec-cell-value">11 MIN (10%–80%)</div>
+            <div class="spec-cell-detail">400 kW high-current cryogenic DC charge acceptance</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-cell-label"><span class="spec-code">SPEC_05</span>AERODYNAMICS</div>
+            <div class="spec-cell-value">0.19 CD UNBROKEN</div>
+            <div class="spec-cell-detail">Zero exterior shut-line turbulence, floor venturis</div>
+          </div>
+          <div class="spec-row">
+            <div class="spec-cell-label"><span class="spec-code">SPEC_06</span>ACOUSTIC LEVEL</div>
+            <div class="spec-cell-value">0.00 DB FLOOR</div>
+            <div class="spec-cell-detail">Active anti-phase counter-oscillation cabin barrier</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 5: THE LINEUP (INTERACTIVE STUDIO SHOWCASE)       -->
+  <!-- ========================================================= -->
+  <section class="content-section lineup-section" id="lineup">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="section-meta">
+          <span class="hud-badge">LINEUP</span>
+          <span class="hud-id">STUDIO·05</span>
+        </div>
+
+        <div class="section-header">
+          <h2 class="display-title-md">THE NOCTIS<br>LINEUP</h2>
+          <p class="section-lead">Five bespoke executions of the single-piece architecture. Photorealistic studio evaluations.</p>
+        </div>
+
+        <!-- Model Selector Tabs -->
+        <div class="lineup-tabs" id="lineupTabs" role="tablist" aria-label="NOCTIS Model Selection">
+          <!-- Dynamically populated from config.js or static fallback -->
+        </div>
+      </div>
+
+      <!-- Studio Showcase Stage: 16:9 1600px High-Res Studio Viewport -->
+      <div class="studio-stage">
+        <div class="studio-backdrop">
+          <div class="studio-light-bar"></div>
+        </div>
+
+        <div class="studio-car-display">
+          <img id="lineupImage" class="studio-car-img" src="assets/cars/gt-e.webp" alt="NOCTIS GT-E" width="1600" height="900" loading="eager">
+          
+          <!-- Alignment guidelines HUD overlay -->
+          <div class="studio-guidelines" aria-hidden="true">
+            <div class="guide-line guide-horizon">
+              <span class="guide-label">AXLE DATUM: 72% HEIGHT</span>
+            </div>
+            <div class="guide-box">
+              <span class="guide-tag">70% CHASSIS SPAN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Spec Bar Below Studio Stage -->
+        <div class="container">
+          <div class="model-details-card" id="modelDetails">
+            <div class="model-info-col">
+              <div class="model-badge-row">
+                <span class="model-badge" id="modelBadge">HERO SPEC</span>
+                <span class="model-finish" id="modelFinish">Matte Graphite</span>
+              </div>
+              <h3 class="model-name" id="modelName">NOCTIS GT-E</h3>
+              <div class="model-category" id="modelCategory">GRAND TOURER COUPE</div>
+              <p class="model-desc" id="modelDesc">
+                The archetype. Sculpted from continuous carbon weave with zero visible shut lines. Built for transcontinental night crossings in absolute sonic void.
+              </p>
+            </div>
+
+            <div class="model-specs-col">
+              <div class="model-spec-stat">
+                <span class="stat-val" id="modelPower">1,200 HP</span>
+                <span class="stat-lbl">POWER OUTPUT</span>
+              </div>
+              <div class="model-spec-stat">
+                <span class="stat-val" id="modelAccel">2.1s</span>
+                <span class="stat-lbl">0–100 KM/H</span>
+              </div>
+              <div class="model-spec-stat">
+                <span class="stat-val" id="modelRange">840 KM</span>
+                <span class="stat-lbl">RANGE</span>
+              </div>
+              <div class="model-spec-stat">
+                <span class="stat-val" id="modelTopSpeed">330 KM/H</span>
+                <span class="stat-lbl">V-MAX</span>
+              </div>
+            </div>
+
+            <div class="model-action-col">
+              <div class="model-pricing">
+                <span class="price-lbl">ESTIMATED ALLOCATION</span>
+                <span class="price-val" id="modelPrice">$240,000</span>
+              </div>
+              <a href="#reserve" class="btn-primary" id="modelSelectBtn">
+                <span>COMMISSION THIS SPEC</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- SECTION 6: COMMISSION / RESERVE TERMINAL                  -->
+  <!-- ========================================================= -->
+  <section class="content-section reserve-section" id="reserve">
+    <div class="container">
+      <div class="reserve-grid">
+        <div class="reserve-copy">
+          <div class="section-meta">
+            <span class="hud-badge">COMMISSION</span>
+            <span class="hud-id">CYCLE·MMXXVI</span>
+          </div>
+          <h2 class="display-title-md">REQUEST<br>ALLOCATION</h2>
+          <p class="body-lead">
+            Production Cycle 01 is limited to 250 bespoke builds worldwide. Every vehicle is numbered, track-verified at night, and delivered in total blackout configuration.
+          </p>
+          <div class="reserve-terms">
+            <div class="term-item">
+              <span class="term-num">01</span>
+              <span class="term-text">Private consultation at our Cologne or Tokyo studios.</span>
+            </div>
+            <div class="term-item">
+              <span class="term-num">02</span>
+              <span class="term-text">Bespoke carbon exterior finishes & telemetry calibration.</span>
+            </div>
+            <div class="term-item">
+              <span class="term-num">03</span>
+              <span class="term-text">Direct factory handover under closed-circuit illumination.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reserve-form-wrapper">
+          <form class="reserve-form" id="reserveForm">
+            <div class="form-hud-header">
+              <span class="hud-tag">TERMINAL:</span>
+              <span class="hud-val">ENCRYPTED COMMISSION CHNL</span>
+            </div>
+
+            <div class="form-row">
+              <label for="clientName" class="form-label">CLIENT IDENTIFIER</label>
+              <input type="text" id="clientName" class="form-input" placeholder="Full Name or Organisation" required>
+            </div>
+
+            <div class="form-row">
+              <label for="clientEmail" class="form-label">COMMUNICATION VECTOR</label>
+              <input type="email" id="clientEmail" class="form-input" placeholder="email@domain.com" required>
+            </div>
+
+            <div class="form-row">
+              <label for="selectedModel" class="form-label">DESIRED CHASSIS ALLOCATION</label>
+              <select id="selectedModel" class="form-select">
+                <option value="gt-e">NOCTIS GT-E (Matte Graphite Grand Tourer)</option>
+                <option value="s">NOCTIS S (Satin Bone White Sport Sedan)</option>
+                <option value="x">NOCTIS X (Midnight Blue Coupe-SUV)</option>
+                <option value="r">NOCTIS R (Track Spec Satin Black)</option>
+                <option value="one">NOCTIS ONE (Liquid Silver Concept Hypercar)</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <label for="deliveryHub" class="form-label">PREFERRED DELIVERY HUB</label>
+              <select id="deliveryHub" class="form-select">
+                <option value="geneva">Geneva Private Aviation Terminal</option>
+                <option value="tokyo">Tokyo Bay Nocturne Vault</option>
+                <option value="zurich">Zurich Alpine Facility</option>
+                <option value="london">London Battersea Private Hangar</option>
+                <option value="newyork">New York Hudson Yard Reserve</option>
+                <option value="losangeles">Los Angeles Pacific Crest Hub</option>
+              </select>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitCommission">
+              <span class="btn-text">TRANSMIT COMMISSION DOSSIER</span>
+              <span class="btn-scan"></span>
+            </button>
+
+            <div class="form-response" id="formResponse" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- FOOTER                                                    -->
+  <!-- ========================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-wordmark-lg">NOCTIS</span>
+          <span class="footer-tagline">THE ONLY LIGHT IN THE WORLD</span>
+        </div>
+        <div class="footer-status-pill">
+          <span class="pulse-dot"></span>
+          <span>BLACKOUT SURVEILLANCE ACTIVE</span>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          &copy; 2026 NOCTIS AUTOMOTIVE SA. ALL RIGHTS RESERVED.
+        </div>
+        <div class="footer-links">
+          <span>COLOGNE</span>
+          <span>&middot;</span>
+          <span>TOKYO</span>
+          <span>&middot;</span>
+          <span>GENEVA</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
+

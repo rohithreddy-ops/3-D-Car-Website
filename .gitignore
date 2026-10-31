@@ -1,0 +1,6 @@
+# Source video and archive files
+*.zip
+*.mp4
+temp_preview/
+.DS_Store
+Thumbs.db
